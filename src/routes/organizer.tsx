@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Plus, TrendingUp, Users, DollarSign, Calendar, Activity } from "lucide-react";
 import { EVENTS, aggregate, formatDate } from "@/lib/mock-data";
+import { EventWizard } from "@/components/EventWizard";
 
 export const Route = createFileRoute("/organizer")({
   head: () => ({ meta: [{ title: "Organizer Console — Evntr" }] }),
@@ -9,6 +11,8 @@ export const Route = createFileRoute("/organizer")({
 });
 
 function Organizer() {
+  const [wizardOpen, setWizardOpen] = useState(false);
+  const [, force] = useState(0);
   // Filter to one vendor for the demo
   const vendorId = "org_1";
   const myEvents = EVENTS.filter((e) => e.organizerId === vendorId);
