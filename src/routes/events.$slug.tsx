@@ -26,7 +26,7 @@ export const Route = createFileRoute("/events/$slug")({
 });
 
 function EventDetail() {
-  const { event } = Route.useLoaderData();
+  const { event } = Route.useLoaderData() as { event: EventDoc };
   const [selected, setSelected] = useState(event.tiers[0].id);
   const [loading, setLoading] = useState(false);
   const [ticket, setTicket] = useState<TicketDoc | null>(null);
