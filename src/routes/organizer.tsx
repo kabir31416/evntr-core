@@ -33,8 +33,9 @@ function Organizer() {
           <h1 className="mt-2 text-4xl font-bold md:text-5xl">Nullbyte <span className="flame-text">Labs</span></h1>
           <p className="mt-1 text-sm text-muted-foreground">Real-time inventory across {myEvents.length} live events.</p>
         </div>
-        <button className="flame-btn flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm"><Plus className="h-4 w-4" /> New Event</button>
+        <button onClick={() => setWizardOpen(true)} className="flame-btn flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm"><Plus className="h-4 w-4" /> New Event</button>
       </motion.div>
+      <EventWizard open={wizardOpen} onClose={() => setWizardOpen(false)} onCreated={() => force((n) => n + 1)} />
 
       {/* Bento KPIs */}
       <div className="grid gap-4 md:grid-cols-4">
