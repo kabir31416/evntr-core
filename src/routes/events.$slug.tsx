@@ -2,10 +2,10 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Star, Users, Lock, CheckCircle2, ArrowLeft, Loader2 } from "lucide-react";
-import { EVENTS, bookSeat, formatDate, type TicketDoc } from "@/lib/mock-data";
+import { EVENTS, bookSeat, formatDate, type TicketDoc, type EventDoc } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/events/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { event: EventDoc } => {
     const event = EVENTS.find((e) => e.slug === params.slug);
     if (!event) throw notFound();
     return { event };
