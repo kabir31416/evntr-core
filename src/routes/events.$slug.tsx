@@ -44,7 +44,7 @@ function EventDetail() {
   }
 
   return (
-    <div className="space-y-8 pt-4">
+    <div className="mx-auto max-w-7xl space-y-8 px-4 pt-4 sm:px-6 lg:px-8">
       <Link to="/events" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-orange-400"><ArrowLeft className="h-4 w-4" /> All events</Link>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
