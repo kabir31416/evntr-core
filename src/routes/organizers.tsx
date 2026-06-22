@@ -8,7 +8,7 @@ export const Route = createFileRoute("/organizers")({
 
 function OrganizersPage() {
   return (
-    <div className="space-y-16 pt-8">
+    <div className="mx-auto max-w-7xl space-y-16 px-4 pt-8 sm:px-6 lg:px-8">
       <section className="max-w-3xl">
         <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-orange-400">// for organizers</div>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-6xl">The operating system <span className="flame-text">for events.</span></h1>

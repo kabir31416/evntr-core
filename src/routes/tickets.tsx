@@ -9,7 +9,7 @@ export const Route = createFileRoute("/tickets")({
 
 function TicketsPage() {
   return (
-    <div className="space-y-8 pt-8">
+    <div className="mx-auto max-w-7xl space-y-8 px-4 pt-8 sm:px-6 lg:px-8">
       <div>
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-orange-400">// wallet</div>
         <h1 className="mt-2 text-4xl font-bold md:text-5xl">Your <span className="flame-text">tickets</span></h1>
