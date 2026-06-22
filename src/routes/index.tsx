@@ -346,7 +346,7 @@ function WhyEvntr() {
         {items.map(({ i: Icon, t, d }) => (
           <div key={t} className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5 transition-colors hover:border-orange-500/30">
             <div className="grid h-10 w-10 place-items-center rounded-lg bg-orange-500/10 text-orange-400">
-              <Icon className="h-4.5 w-4.5" />
+              <Icon className="h-[18px] w-[18px]" />
             </div>
             <div className="mt-4 text-[15px] font-semibold">{t}</div>
             <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{d}</p>
