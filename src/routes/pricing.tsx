@@ -14,7 +14,7 @@ const TIERS = [
 
 function PricingPage() {
   return (
-    <div className="space-y-12 pt-8">
+    <div className="mx-auto max-w-7xl space-y-12 px-4 pt-8 sm:px-6 lg:px-8">
       <div className="max-w-2xl">
         <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-orange-400">// pricing</div>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">Simple, scalable pricing</h1>

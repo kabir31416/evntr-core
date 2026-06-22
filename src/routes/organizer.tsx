@@ -26,7 +26,7 @@ function Organizer() {
   const totalCap = myEvents.reduce((a, e) => a + e.tiers.reduce((b, t) => b + t.total, 0), 0);
 
   return (
-    <div className="space-y-8 pt-8">
+    <div className="mx-auto max-w-7xl space-y-8 px-4 pt-8 sm:px-6 lg:px-8">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="font-mono text-xs uppercase tracking-[0.2em] text-orange-400">// vendor console</div>

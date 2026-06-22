@@ -24,7 +24,7 @@ function EventsPage() {
   );
 
   return (
-    <div className="space-y-8 pt-8">
+    <div className="mx-auto max-w-7xl space-y-8 px-4 pt-8 sm:px-6 lg:px-8">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-orange-400">// catalog</div>
         <h1 className="mt-2 text-4xl font-bold md:text-5xl">Discover what's <span className="flame-text">happening</span></h1>

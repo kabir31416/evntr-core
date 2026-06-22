@@ -24,7 +24,7 @@ export const Route = createFileRoute("/tickets/$id")({
 function TicketPage() {
   const { ticket, event, tier } = Route.useLoaderData();
   return (
-    <div className="mx-auto max-w-md space-y-6 pt-8">
+    <div className="mx-auto max-w-md space-y-6 px-4 pt-8 sm:px-6">
       <Link to="/tickets" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-orange-400"><ArrowLeft className="h-4 w-4" /> My tickets</Link>
 
       <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }}

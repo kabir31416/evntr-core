@@ -19,7 +19,7 @@ const CATS = [
 
 function CategoriesPage() {
   return (
-    <div className="space-y-10 pt-8">
+    <div className="mx-auto max-w-7xl space-y-10 px-4 pt-8 sm:px-6 lg:px-8">
       <div>
         <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-orange-400">// browse</div>
         <h1 className="mt-2 text-4xl font-semibold tracking-tight md:text-5xl">All categories</h1>
