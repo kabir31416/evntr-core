@@ -46,12 +46,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <Background />
       <Navbar />
-      <main className="mx-auto w-[min(1200px,94%)] py-8">
+      <main className="pt-16">
         <Outlet />
       </main>
-      <footer className="mx-auto mt-20 w-[min(1200px,94%)] border-t border-white/5 py-8 text-center text-xs text-muted-foreground">
-        <span className="font-mono">EVNTR // mutex-safe ticketing // built for vendors</span>
-      </footer>
     </QueryClientProvider>
   );
 }
