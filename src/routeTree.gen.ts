@@ -21,8 +21,14 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrganizerIndexRouteImport } from './routes/organizer.index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
+import { Route as OrganizerStaffRouteImport } from './routes/organizer.staff'
+import { Route as OrganizerSettingsRouteImport } from './routes/organizer.settings'
+import { Route as OrganizerPayoutsRouteImport } from './routes/organizer.payouts'
 import { Route as OrganizerOrdersRouteImport } from './routes/organizer.orders'
 import { Route as OrganizerEventsRouteImport } from './routes/organizer.events'
+import { Route as OrganizerCouponsRouteImport } from './routes/organizer.coupons'
+import { Route as OrganizerAttendeesRouteImport } from './routes/organizer.attendees'
+import { Route as OrganizerAnalyticsRouteImport } from './routes/organizer.analytics'
 import { Route as EventsSlugRouteImport } from './routes/events.$slug'
 import { Route as DashboardTicketsRouteImport } from './routes/dashboard.tickets'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
@@ -93,6 +99,21 @@ const TicketsIdRoute = TicketsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => TicketsRoute,
 } as any)
+const OrganizerStaffRoute = OrganizerStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerSettingsRoute = OrganizerSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerPayoutsRoute = OrganizerPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => OrganizerRoute,
+} as any)
 const OrganizerOrdersRoute = OrganizerOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -101,6 +122,21 @@ const OrganizerOrdersRoute = OrganizerOrdersRouteImport.update({
 const OrganizerEventsRoute = OrganizerEventsRouteImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerCouponsRoute = OrganizerCouponsRouteImport.update({
+  id: '/coupons',
+  path: '/coupons',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerAttendeesRoute = OrganizerAttendeesRouteImport.update({
+  id: '/attendees',
+  path: '/attendees',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerAnalyticsRoute = OrganizerAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => OrganizerRoute,
 } as any)
 const EventsSlugRoute = EventsSlugRouteImport.update({
@@ -168,8 +204,14 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/organizer/analytics': typeof OrganizerAnalyticsRoute
+  '/organizer/attendees': typeof OrganizerAttendeesRoute
+  '/organizer/coupons': typeof OrganizerCouponsRoute
   '/organizer/events': typeof OrganizerEventsRoute
   '/organizer/orders': typeof OrganizerOrdersRoute
+  '/organizer/payouts': typeof OrganizerPayoutsRoute
+  '/organizer/settings': typeof OrganizerSettingsRoute
+  '/organizer/staff': typeof OrganizerStaffRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/organizer/': typeof OrganizerIndexRoute
@@ -191,8 +233,14 @@ export interface FileRoutesByTo {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/organizer/analytics': typeof OrganizerAnalyticsRoute
+  '/organizer/attendees': typeof OrganizerAttendeesRoute
+  '/organizer/coupons': typeof OrganizerCouponsRoute
   '/organizer/events': typeof OrganizerEventsRoute
   '/organizer/orders': typeof OrganizerOrdersRoute
+  '/organizer/payouts': typeof OrganizerPayoutsRoute
+  '/organizer/settings': typeof OrganizerSettingsRoute
+  '/organizer/staff': typeof OrganizerStaffRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/dashboard': typeof DashboardIndexRoute
   '/organizer': typeof OrganizerIndexRoute
@@ -217,8 +265,14 @@ export interface FileRoutesById {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/organizer/analytics': typeof OrganizerAnalyticsRoute
+  '/organizer/attendees': typeof OrganizerAttendeesRoute
+  '/organizer/coupons': typeof OrganizerCouponsRoute
   '/organizer/events': typeof OrganizerEventsRoute
   '/organizer/orders': typeof OrganizerOrdersRoute
+  '/organizer/payouts': typeof OrganizerPayoutsRoute
+  '/organizer/settings': typeof OrganizerSettingsRoute
+  '/organizer/staff': typeof OrganizerStaffRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/organizer/': typeof OrganizerIndexRoute
@@ -244,8 +298,14 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/tickets'
     | '/events/$slug'
+    | '/organizer/analytics'
+    | '/organizer/attendees'
+    | '/organizer/coupons'
     | '/organizer/events'
     | '/organizer/orders'
+    | '/organizer/payouts'
+    | '/organizer/settings'
+    | '/organizer/staff'
     | '/tickets/$id'
     | '/dashboard/'
     | '/organizer/'
@@ -267,8 +327,14 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/tickets'
     | '/events/$slug'
+    | '/organizer/analytics'
+    | '/organizer/attendees'
+    | '/organizer/coupons'
     | '/organizer/events'
     | '/organizer/orders'
+    | '/organizer/payouts'
+    | '/organizer/settings'
+    | '/organizer/staff'
     | '/tickets/$id'
     | '/dashboard'
     | '/organizer'
@@ -292,8 +358,14 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/tickets'
     | '/events/$slug'
+    | '/organizer/analytics'
+    | '/organizer/attendees'
+    | '/organizer/coupons'
     | '/organizer/events'
     | '/organizer/orders'
+    | '/organizer/payouts'
+    | '/organizer/settings'
+    | '/organizer/staff'
     | '/tickets/$id'
     | '/dashboard/'
     | '/organizer/'
@@ -397,6 +469,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TicketsIdRouteImport
       parentRoute: typeof TicketsRoute
     }
+    '/organizer/staff': {
+      id: '/organizer/staff'
+      path: '/staff'
+      fullPath: '/organizer/staff'
+      preLoaderRoute: typeof OrganizerStaffRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/settings': {
+      id: '/organizer/settings'
+      path: '/settings'
+      fullPath: '/organizer/settings'
+      preLoaderRoute: typeof OrganizerSettingsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/payouts': {
+      id: '/organizer/payouts'
+      path: '/payouts'
+      fullPath: '/organizer/payouts'
+      preLoaderRoute: typeof OrganizerPayoutsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
     '/organizer/orders': {
       id: '/organizer/orders'
       path: '/orders'
@@ -409,6 +502,27 @@ declare module '@tanstack/react-router' {
       path: '/events'
       fullPath: '/organizer/events'
       preLoaderRoute: typeof OrganizerEventsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/coupons': {
+      id: '/organizer/coupons'
+      path: '/coupons'
+      fullPath: '/organizer/coupons'
+      preLoaderRoute: typeof OrganizerCouponsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/attendees': {
+      id: '/organizer/attendees'
+      path: '/attendees'
+      fullPath: '/organizer/attendees'
+      preLoaderRoute: typeof OrganizerAttendeesRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/analytics': {
+      id: '/organizer/analytics'
+      path: '/analytics'
+      fullPath: '/organizer/analytics'
+      preLoaderRoute: typeof OrganizerAnalyticsRouteImport
       parentRoute: typeof OrganizerRoute
     }
     '/events/$slug': {
@@ -525,14 +639,26 @@ const EventsRouteWithChildren =
   EventsRoute._addFileChildren(EventsRouteChildren)
 
 interface OrganizerRouteChildren {
+  OrganizerAnalyticsRoute: typeof OrganizerAnalyticsRoute
+  OrganizerAttendeesRoute: typeof OrganizerAttendeesRoute
+  OrganizerCouponsRoute: typeof OrganizerCouponsRoute
   OrganizerEventsRoute: typeof OrganizerEventsRoute
   OrganizerOrdersRoute: typeof OrganizerOrdersRoute
+  OrganizerPayoutsRoute: typeof OrganizerPayoutsRoute
+  OrganizerSettingsRoute: typeof OrganizerSettingsRoute
+  OrganizerStaffRoute: typeof OrganizerStaffRoute
   OrganizerIndexRoute: typeof OrganizerIndexRoute
 }
 
 const OrganizerRouteChildren: OrganizerRouteChildren = {
+  OrganizerAnalyticsRoute: OrganizerAnalyticsRoute,
+  OrganizerAttendeesRoute: OrganizerAttendeesRoute,
+  OrganizerCouponsRoute: OrganizerCouponsRoute,
   OrganizerEventsRoute: OrganizerEventsRoute,
   OrganizerOrdersRoute: OrganizerOrdersRoute,
+  OrganizerPayoutsRoute: OrganizerPayoutsRoute,
+  OrganizerSettingsRoute: OrganizerSettingsRoute,
+  OrganizerStaffRoute: OrganizerStaffRoute,
   OrganizerIndexRoute: OrganizerIndexRoute,
 }
 
