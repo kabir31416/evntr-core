@@ -14,10 +14,14 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrganizersRouteImport } from './routes/organizers'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrganizerIndexRouteImport } from './routes/organizer.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
 import { Route as EventsSlugRouteImport } from './routes/events.$slug'
+import { Route as AuthRegisterRouteImport } from './routes/auth.register'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 
 const TicketsRoute = TicketsRouteImport.update({
   id: '/tickets',
@@ -44,6 +48,11 @@ const CategoriesRoute = CategoriesRouteImport.update({
   path: '/categories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -64,25 +73,48 @@ const EventsSlugRoute = EventsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => EventsRoute,
 } as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthForgotRoute = AuthForgotRouteImport.update({
+  id: '/forgot',
+  path: '/forgot',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRouteWithChildren
   '/categories': typeof CategoriesRoute
   '/events': typeof EventsRouteWithChildren
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/events/$slug': typeof EventsSlugRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/organizer/': typeof OrganizerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRouteWithChildren
   '/categories': typeof CategoriesRoute
   '/events': typeof EventsRouteWithChildren
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/events/$slug': typeof EventsSlugRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/organizer': typeof OrganizerIndexRoute
@@ -90,11 +122,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRouteWithChildren
   '/categories': typeof CategoriesRoute
   '/events': typeof EventsRouteWithChildren
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/events/$slug': typeof EventsSlugRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/organizer/': typeof OrganizerIndexRoute
@@ -103,33 +139,45 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/categories'
     | '/events'
     | '/organizers'
     | '/pricing'
     | '/tickets'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/register'
     | '/events/$slug'
     | '/tickets/$id'
     | '/organizer/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/categories'
     | '/events'
     | '/organizers'
     | '/pricing'
     | '/tickets'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/register'
     | '/events/$slug'
     | '/tickets/$id'
     | '/organizer'
   id:
     | '__root__'
     | '/'
+    | '/auth'
     | '/categories'
     | '/events'
     | '/organizers'
     | '/pricing'
     | '/tickets'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/register'
     | '/events/$slug'
     | '/tickets/$id'
     | '/organizer/'
@@ -137,6 +185,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
   CategoriesRoute: typeof CategoriesRoute
   EventsRoute: typeof EventsRouteWithChildren
   OrganizersRoute: typeof OrganizersRoute
@@ -182,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -210,8 +266,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsSlugRouteImport
       parentRoute: typeof EventsRoute
     }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/forgot': {
+      id: '/auth/forgot'
+      path: '/forgot'
+      fullPath: '/auth/forgot'
+      preLoaderRoute: typeof AuthForgotRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
+
+interface AuthRouteChildren {
+  AuthForgotRoute: typeof AuthForgotRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotRoute: AuthForgotRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface EventsRouteChildren {
   EventsSlugRoute: typeof EventsSlugRoute
@@ -237,6 +328,7 @@ const TicketsRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRouteWithChildren,
   CategoriesRoute: CategoriesRoute,
   EventsRoute: EventsRouteWithChildren,
   OrganizersRoute: OrganizersRoute,
