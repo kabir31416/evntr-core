@@ -15,14 +15,14 @@ export const Route = createFileRoute("/organizers/$id")({
 });
 
 function OrganizerProfile() {
-  const { events, name } = Route.useLoaderData();
-  const totalSold = events.reduce((a, e) => a + e.tiers.reduce((b, t) => b + t.sold, 0), 0);
+  const { events, name } = Route.useLoaderData() as { events: EventDoc[]; name: string };
+  const totalSold = events.reduce((a: number, e: EventDoc) => a + e.tiers.reduce((b: number, t) => b + t.sold, 0), 0);
   return (
     <div className="mx-auto max-w-6xl space-y-10 px-4 pt-12 sm:px-6 lg:px-8">
       <div className="glass relative overflow-hidden rounded-2xl p-8 md:p-12">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-orange-600/20 via-transparent to-red-600/10" />
         <div className="flex flex-wrap items-center gap-6">
-          <div className="grid h-20 w-20 place-items-center rounded-2xl flame-gradient text-2xl font-semibold text-black">{name.split(" ").map(n => n[0]).join("")}</div>
+          <div className="grid h-20 w-20 place-items-center rounded-2xl flame-gradient text-2xl font-semibold text-black">{name.split(" ").map((n: string) => n[0]).join("")}</div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{name}</h1>
@@ -41,7 +41,7 @@ function OrganizerProfile() {
       <div>
         <h2 className="mb-4 text-xl font-semibold">Events by {name}</h2>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {events.map((e, i) => <EventCard key={e._id} event={e} index={i} />)}
+          {events.map((e: EventDoc, i: number) => <EventCard key={e._id} event={e} index={i} />)}
         </div>
       </div>
     </div>
