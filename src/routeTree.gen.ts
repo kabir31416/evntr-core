@@ -13,12 +13,19 @@ import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrganizersRouteImport } from './routes/organizers'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrganizerIndexRouteImport } from './routes/organizer.index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
 import { Route as EventsSlugRouteImport } from './routes/events.$slug'
+import { Route as DashboardTicketsRouteImport } from './routes/dashboard.tickets'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.notifications'
+import { Route as DashboardHistoryRouteImport } from './routes/dashboard.history'
+import { Route as DashboardFavoritesRouteImport } from './routes/dashboard.favorites'
 import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
@@ -43,6 +50,11 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesRoute = CategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -63,6 +75,11 @@ const OrganizerIndexRoute = OrganizerIndexRouteImport.update({
   path: '/organizer/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const TicketsIdRoute = TicketsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -72,6 +89,31 @@ const EventsSlugRoute = EventsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => EventsRoute,
+} as any)
+const DashboardTicketsRoute = DashboardTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardHistoryRoute = DashboardHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardFavoritesRoute = DashboardFavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
   id: '/register',
@@ -93,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
   '/categories': typeof CategoriesRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
@@ -100,8 +143,14 @@ export interface FileRoutesByFullPath {
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/dashboard/favorites': typeof DashboardFavoritesRoute
+  '/dashboard/history': typeof DashboardHistoryRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
   '/tickets/$id': typeof TicketsIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/organizer/': typeof OrganizerIndexRoute
 }
 export interface FileRoutesByTo {
@@ -115,8 +164,14 @@ export interface FileRoutesByTo {
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/dashboard/favorites': typeof DashboardFavoritesRoute
+  '/dashboard/history': typeof DashboardHistoryRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
   '/tickets/$id': typeof TicketsIdRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/organizer': typeof OrganizerIndexRoute
 }
 export interface FileRoutesById {
@@ -124,6 +179,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
   '/categories': typeof CategoriesRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
@@ -131,8 +187,14 @@ export interface FileRoutesById {
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/dashboard/favorites': typeof DashboardFavoritesRoute
+  '/dashboard/history': typeof DashboardHistoryRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
   '/tickets/$id': typeof TicketsIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/organizer/': typeof OrganizerIndexRoute
 }
 export interface FileRouteTypes {
@@ -141,6 +203,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/categories'
+    | '/dashboard'
     | '/events'
     | '/organizers'
     | '/pricing'
@@ -148,8 +211,14 @@ export interface FileRouteTypes {
     | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
+    | '/dashboard/favorites'
+    | '/dashboard/history'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/tickets'
     | '/events/$slug'
     | '/tickets/$id'
+    | '/dashboard/'
     | '/organizer/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -163,14 +232,21 @@ export interface FileRouteTypes {
     | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
+    | '/dashboard/favorites'
+    | '/dashboard/history'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/tickets'
     | '/events/$slug'
     | '/tickets/$id'
+    | '/dashboard'
     | '/organizer'
   id:
     | '__root__'
     | '/'
     | '/auth'
     | '/categories'
+    | '/dashboard'
     | '/events'
     | '/organizers'
     | '/pricing'
@@ -178,8 +254,14 @@ export interface FileRouteTypes {
     | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
+    | '/dashboard/favorites'
+    | '/dashboard/history'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/tickets'
     | '/events/$slug'
     | '/tickets/$id'
+    | '/dashboard/'
     | '/organizer/'
   fileRoutesById: FileRoutesById
 }
@@ -187,6 +269,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   CategoriesRoute: typeof CategoriesRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   EventsRoute: typeof EventsRouteWithChildren
   OrganizersRoute: typeof OrganizersRoute
   PricingRoute: typeof PricingRoute
@@ -224,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories': {
       id: '/categories'
       path: '/categories'
@@ -252,6 +342,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/tickets/$id': {
       id: '/tickets/$id'
       path: '/$id'
@@ -265,6 +362,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/events/$slug'
       preLoaderRoute: typeof EventsSlugRouteImport
       parentRoute: typeof EventsRoute
+    }
+    '/dashboard/tickets': {
+      id: '/dashboard/tickets'
+      path: '/tickets'
+      fullPath: '/dashboard/tickets'
+      preLoaderRoute: typeof DashboardTicketsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/notifications': {
+      id: '/dashboard/notifications'
+      path: '/notifications'
+      fullPath: '/dashboard/notifications'
+      preLoaderRoute: typeof DashboardNotificationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/history': {
+      id: '/dashboard/history'
+      path: '/history'
+      fullPath: '/dashboard/history'
+      preLoaderRoute: typeof DashboardHistoryRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/favorites': {
+      id: '/dashboard/favorites'
+      path: '/favorites'
+      fullPath: '/dashboard/favorites'
+      preLoaderRoute: typeof DashboardFavoritesRouteImport
+      parentRoute: typeof DashboardRoute
     }
     '/auth/register': {
       id: '/auth/register'
@@ -304,6 +436,28 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
+interface DashboardRouteChildren {
+  DashboardFavoritesRoute: typeof DashboardFavoritesRoute
+  DashboardHistoryRoute: typeof DashboardHistoryRoute
+  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardTicketsRoute: typeof DashboardTicketsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardFavoritesRoute: DashboardFavoritesRoute,
+  DashboardHistoryRoute: DashboardHistoryRoute,
+  DashboardNotificationsRoute: DashboardNotificationsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardTicketsRoute: DashboardTicketsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 interface EventsRouteChildren {
   EventsSlugRoute: typeof EventsSlugRoute
 }
@@ -330,6 +484,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   CategoriesRoute: CategoriesRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   EventsRoute: EventsRouteWithChildren,
   OrganizersRoute: OrganizersRoute,
   PricingRoute: PricingRoute,
