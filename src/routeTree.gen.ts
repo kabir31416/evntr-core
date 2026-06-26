@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrganizersRouteImport } from './routes/organizers'
+import { Route as OrganizerRouteImport } from './routes/organizer'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CategoriesRouteImport } from './routes/categories'
@@ -45,6 +46,11 @@ const OrganizersRoute = OrganizersRouteImport.update({
   path: '/organizers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganizerRoute = OrganizerRouteImport.update({
+  id: '/organizer',
+  path: '/organizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
@@ -71,9 +77,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrganizerIndexRoute = OrganizerIndexRouteImport.update({
-  id: '/organizer/',
-  path: '/organizer/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => OrganizerRoute,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/categories': typeof CategoriesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
+  '/organizer': typeof OrganizerRouteWithChildren
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
@@ -181,6 +188,7 @@ export interface FileRoutesById {
   '/categories': typeof CategoriesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
+  '/organizer': typeof OrganizerRouteWithChildren
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
@@ -205,6 +213,7 @@ export interface FileRouteTypes {
     | '/categories'
     | '/dashboard'
     | '/events'
+    | '/organizer'
     | '/organizers'
     | '/pricing'
     | '/tickets'
@@ -248,6 +257,7 @@ export interface FileRouteTypes {
     | '/categories'
     | '/dashboard'
     | '/events'
+    | '/organizer'
     | '/organizers'
     | '/pricing'
     | '/tickets'
@@ -271,10 +281,10 @@ export interface RootRouteChildren {
   CategoriesRoute: typeof CategoriesRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   EventsRoute: typeof EventsRouteWithChildren
+  OrganizerRoute: typeof OrganizerRouteWithChildren
   OrganizersRoute: typeof OrganizersRoute
   PricingRoute: typeof PricingRoute
   TicketsRoute: typeof TicketsRouteWithChildren
-  OrganizerIndexRoute: typeof OrganizerIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -298,6 +308,13 @@ declare module '@tanstack/react-router' {
       path: '/organizers'
       fullPath: '/organizers'
       preLoaderRoute: typeof OrganizersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organizer': {
+      id: '/organizer'
+      path: '/organizer'
+      fullPath: '/organizer'
+      preLoaderRoute: typeof OrganizerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -337,10 +354,10 @@ declare module '@tanstack/react-router' {
     }
     '/organizer/': {
       id: '/organizer/'
-      path: '/organizer'
+      path: '/'
       fullPath: '/organizer/'
       preLoaderRoute: typeof OrganizerIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof OrganizerRoute
     }
     '/dashboard/': {
       id: '/dashboard/'
@@ -469,6 +486,18 @@ const EventsRouteChildren: EventsRouteChildren = {
 const EventsRouteWithChildren =
   EventsRoute._addFileChildren(EventsRouteChildren)
 
+interface OrganizerRouteChildren {
+  OrganizerIndexRoute: typeof OrganizerIndexRoute
+}
+
+const OrganizerRouteChildren: OrganizerRouteChildren = {
+  OrganizerIndexRoute: OrganizerIndexRoute,
+}
+
+const OrganizerRouteWithChildren = OrganizerRoute._addFileChildren(
+  OrganizerRouteChildren,
+)
+
 interface TicketsRouteChildren {
   TicketsIdRoute: typeof TicketsIdRoute
 }
@@ -486,10 +515,10 @@ const rootRouteChildren: RootRouteChildren = {
   CategoriesRoute: CategoriesRoute,
   DashboardRoute: DashboardRouteWithChildren,
   EventsRoute: EventsRouteWithChildren,
+  OrganizerRoute: OrganizerRouteWithChildren,
   OrganizersRoute: OrganizersRoute,
   PricingRoute: PricingRoute,
   TicketsRoute: TicketsRouteWithChildren,
-  OrganizerIndexRoute: OrganizerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
