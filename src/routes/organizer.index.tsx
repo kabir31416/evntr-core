@@ -5,7 +5,7 @@ import { Plus, TrendingUp, Users, DollarSign, Calendar, Activity } from "lucide-
 import { EVENTS, aggregate, formatDate } from "@/lib/mock-data";
 import { EventWizard } from "@/components/EventWizard";
 
-export const Route = createFileRoute("/organizer")({
+export const Route = createFileRoute("/organizer/")({
   head: () => ({ meta: [{ title: "Organizer Console — Evntr" }] }),
   component: Organizer,
 });
