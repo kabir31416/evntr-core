@@ -1,11 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { EVENTS } from "@/lib/mock-data";
+import { EVENTS, type EventDoc } from "@/lib/mock-data";
 import { EventCard } from "@/components/EventCard";
 import { MapPin, ShieldCheck, Users } from "lucide-react";
 
 export const Route = createFileRoute("/organizers/$id")({
   head: ({ params }) => ({ meta: [{ title: `Organizer · ${params.id} — Evntr` }] }),
-  loader: ({ params }) => {
+  loader: ({ params }): { events: EventDoc[]; name: string } => {
     const events = EVENTS.filter((e) => e.organizerId === params.id);
     if (events.length === 0) throw notFound();
     return { events, name: events[0].organizer };

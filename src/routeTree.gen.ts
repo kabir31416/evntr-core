@@ -13,14 +13,19 @@ import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrganizersRouteImport } from './routes/organizers'
 import { Route as OrganizerRouteImport } from './routes/organizer'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrganizerIndexRouteImport } from './routes/organizer.index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
+import { Route as OrganizersIdRouteImport } from './routes/organizers.$id'
 import { Route as OrganizerStaffRouteImport } from './routes/organizer.staff'
 import { Route as OrganizerSettingsRouteImport } from './routes/organizer.settings'
 import { Route as OrganizerPayoutsRouteImport } from './routes/organizer.payouts'
@@ -59,6 +64,11 @@ const OrganizerRoute = OrganizerRouteImport.update({
   path: '/organizer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
@@ -69,14 +79,29 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesRoute = CategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -98,6 +123,11 @@ const TicketsIdRoute = TicketsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => TicketsRoute,
+} as any)
+const OrganizersIdRoute = OrganizersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => OrganizersRoute,
 } as any)
 const OrganizerStaffRoute = OrganizerStaffRouteImport.update({
   id: '/staff',
@@ -187,12 +217,16 @@ const AuthForgotRoute = AuthForgotRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRouteWithChildren
+  '/blog': typeof BlogRoute
   '/categories': typeof CategoriesRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
+  '/faq': typeof FaqRoute
   '/organizer': typeof OrganizerRouteWithChildren
-  '/organizers': typeof OrganizersRoute
+  '/organizers': typeof OrganizersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
@@ -212,16 +246,21 @@ export interface FileRoutesByFullPath {
   '/organizer/payouts': typeof OrganizerPayoutsRoute
   '/organizer/settings': typeof OrganizerSettingsRoute
   '/organizer/staff': typeof OrganizerStaffRoute
+  '/organizers/$id': typeof OrganizersIdRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/organizer/': typeof OrganizerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRouteWithChildren
+  '/blog': typeof BlogRoute
   '/categories': typeof CategoriesRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRouteWithChildren
-  '/organizers': typeof OrganizersRoute
+  '/faq': typeof FaqRoute
+  '/organizers': typeof OrganizersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
@@ -241,6 +280,7 @@ export interface FileRoutesByTo {
   '/organizer/payouts': typeof OrganizerPayoutsRoute
   '/organizer/settings': typeof OrganizerSettingsRoute
   '/organizer/staff': typeof OrganizerStaffRoute
+  '/organizers/$id': typeof OrganizersIdRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/dashboard': typeof DashboardIndexRoute
   '/organizer': typeof OrganizerIndexRoute
@@ -248,12 +288,16 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRouteWithChildren
+  '/blog': typeof BlogRoute
   '/categories': typeof CategoriesRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
+  '/faq': typeof FaqRoute
   '/organizer': typeof OrganizerRouteWithChildren
-  '/organizers': typeof OrganizersRoute
+  '/organizers': typeof OrganizersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
@@ -273,6 +317,7 @@ export interface FileRoutesById {
   '/organizer/payouts': typeof OrganizerPayoutsRoute
   '/organizer/settings': typeof OrganizerSettingsRoute
   '/organizer/staff': typeof OrganizerStaffRoute
+  '/organizers/$id': typeof OrganizersIdRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/organizer/': typeof OrganizerIndexRoute
@@ -281,10 +326,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/auth'
+    | '/blog'
     | '/categories'
+    | '/contact'
     | '/dashboard'
     | '/events'
+    | '/faq'
     | '/organizer'
     | '/organizers'
     | '/pricing'
@@ -306,15 +355,20 @@ export interface FileRouteTypes {
     | '/organizer/payouts'
     | '/organizer/settings'
     | '/organizer/staff'
+    | '/organizers/$id'
     | '/tickets/$id'
     | '/dashboard/'
     | '/organizer/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/auth'
+    | '/blog'
     | '/categories'
+    | '/contact'
     | '/events'
+    | '/faq'
     | '/organizers'
     | '/pricing'
     | '/tickets'
@@ -335,16 +389,21 @@ export interface FileRouteTypes {
     | '/organizer/payouts'
     | '/organizer/settings'
     | '/organizer/staff'
+    | '/organizers/$id'
     | '/tickets/$id'
     | '/dashboard'
     | '/organizer'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/auth'
+    | '/blog'
     | '/categories'
+    | '/contact'
     | '/dashboard'
     | '/events'
+    | '/faq'
     | '/organizer'
     | '/organizers'
     | '/pricing'
@@ -366,6 +425,7 @@ export interface FileRouteTypes {
     | '/organizer/payouts'
     | '/organizer/settings'
     | '/organizer/staff'
+    | '/organizers/$id'
     | '/tickets/$id'
     | '/dashboard/'
     | '/organizer/'
@@ -373,12 +433,16 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRouteWithChildren
+  BlogRoute: typeof BlogRoute
   CategoriesRoute: typeof CategoriesRoute
+  ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   EventsRoute: typeof EventsRouteWithChildren
+  FaqRoute: typeof FaqRoute
   OrganizerRoute: typeof OrganizerRouteWithChildren
-  OrganizersRoute: typeof OrganizersRoute
+  OrganizersRoute: typeof OrganizersRouteWithChildren
   PricingRoute: typeof PricingRoute
   TicketsRoute: typeof TicketsRouteWithChildren
 }
@@ -413,6 +477,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
@@ -427,6 +498,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories': {
       id: '/categories'
       path: '/categories'
@@ -434,11 +512,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -468,6 +560,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/tickets/$id'
       preLoaderRoute: typeof TicketsIdRouteImport
       parentRoute: typeof TicketsRoute
+    }
+    '/organizers/$id': {
+      id: '/organizers/$id'
+      path: '/$id'
+      fullPath: '/organizers/$id'
+      preLoaderRoute: typeof OrganizersIdRouteImport
+      parentRoute: typeof OrganizersRoute
     }
     '/organizer/staff': {
       id: '/organizer/staff'
@@ -666,6 +765,18 @@ const OrganizerRouteWithChildren = OrganizerRoute._addFileChildren(
   OrganizerRouteChildren,
 )
 
+interface OrganizersRouteChildren {
+  OrganizersIdRoute: typeof OrganizersIdRoute
+}
+
+const OrganizersRouteChildren: OrganizersRouteChildren = {
+  OrganizersIdRoute: OrganizersIdRoute,
+}
+
+const OrganizersRouteWithChildren = OrganizersRoute._addFileChildren(
+  OrganizersRouteChildren,
+)
+
 interface TicketsRouteChildren {
   TicketsIdRoute: typeof TicketsIdRoute
 }
@@ -679,12 +790,16 @@ const TicketsRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AuthRoute: AuthRouteWithChildren,
+  BlogRoute: BlogRoute,
   CategoriesRoute: CategoriesRoute,
+  ContactRoute: ContactRoute,
   DashboardRoute: DashboardRouteWithChildren,
   EventsRoute: EventsRouteWithChildren,
+  FaqRoute: FaqRoute,
   OrganizerRoute: OrganizerRouteWithChildren,
-  OrganizersRoute: OrganizersRoute,
+  OrganizersRoute: OrganizersRouteWithChildren,
   PricingRoute: PricingRoute,
   TicketsRoute: TicketsRouteWithChildren,
 }
