@@ -26,15 +26,10 @@ function Organizer() {
   const totalCap = myEvents.reduce((a, e) => a + e.tiers.reduce((b, t) => b + t.total, 0), 0);
 
   return (
-    <div className="mx-auto max-w-7xl space-y-8 px-4 pt-8 sm:px-6 lg:px-8">
-      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <div className="font-mono text-xs uppercase tracking-[0.2em] text-orange-400">// vendor console</div>
-          <h1 className="mt-2 text-4xl font-bold md:text-5xl">Nullbyte <span className="flame-text">Labs</span></h1>
-          <p className="mt-1 text-sm text-muted-foreground">Real-time inventory across {myEvents.length} live events.</p>
-        </div>
+    <div className="space-y-8">
+      <div className="flex justify-end">
         <button onClick={() => setWizardOpen(true)} className="flame-btn flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm"><Plus className="h-4 w-4" /> New Event</button>
-      </motion.div>
+      </div>
       <EventWizard open={wizardOpen} onClose={() => setWizardOpen(false)} onCreated={() => force((n) => n + 1)} />
 
       {/* Bento KPIs */}
