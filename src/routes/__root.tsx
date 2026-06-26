@@ -9,6 +9,7 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/Navbar";
 import { Background } from "@/components/Background";
+import { AuthProvider } from "@/lib/auth";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -44,11 +45,13 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <Background />
-      <Navbar />
-      <main className="pt-16">
-        <Outlet />
-      </main>
+      <AuthProvider>
+        <Background />
+        <Navbar />
+        <main className="pt-16">
+          <Outlet />
+        </main>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

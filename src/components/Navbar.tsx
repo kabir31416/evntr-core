@@ -1,7 +1,8 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles, ArrowRight } from "lucide-react";
+import { Menu, X, Sparkles, ArrowRight, LayoutDashboard, LogOut } from "lucide-react";
+import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { to: "/events", label: "Explore Events" },
@@ -13,6 +14,8 @@ const NAV = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -62,19 +65,27 @@ export function Navbar() {
 
           {/* Right */}
           <div className="hidden items-center gap-2 md:flex">
-            <Link
-              to="/events"
-              className="rounded-md px-3 py-1.5 text-[13.5px] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Sign in
-            </Link>
-            <Link
-              to="/organizer"
-              className="group inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-[13.5px] font-medium text-black transition-all hover:bg-white/90"
-            >
-              Create Event
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </Link>
+            {user ? (
+              <>
+                <Link to="/dashboard" className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[13.5px] text-muted-foreground transition-colors hover:text-foreground">
+                  <LayoutDashboard className="h-3.5 w-3.5" />Dashboard
+                </Link>
+                <button onClick={() => { logout(); navigate({ to: "/" }); }} className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[13.5px] text-muted-foreground transition-colors hover:text-foreground">
+                  <LogOut className="h-3.5 w-3.5" />Sign out
+                </button>
+                <Link to="/organizer" className="group inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-[13.5px] font-medium text-black transition-all hover:bg-white/90">
+                  Organizer <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/auth/login" className="rounded-md px-3 py-1.5 text-[13.5px] text-muted-foreground transition-colors hover:text-foreground">Sign in</Link>
+                <Link to="/auth/register" className="group inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-[13.5px] font-medium text-black transition-all hover:bg-white/90">
+                  Get started
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile toggle */}

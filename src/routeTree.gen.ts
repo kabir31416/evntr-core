@@ -13,11 +13,36 @@ import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrganizersRouteImport } from './routes/organizers'
 import { Route as OrganizerRouteImport } from './routes/organizer'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrganizerIndexRouteImport } from './routes/organizer.index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
+import { Route as OrganizersIdRouteImport } from './routes/organizers.$id'
+import { Route as OrganizerStaffRouteImport } from './routes/organizer.staff'
+import { Route as OrganizerSettingsRouteImport } from './routes/organizer.settings'
+import { Route as OrganizerPayoutsRouteImport } from './routes/organizer.payouts'
+import { Route as OrganizerOrdersRouteImport } from './routes/organizer.orders'
+import { Route as OrganizerEventsRouteImport } from './routes/organizer.events'
+import { Route as OrganizerCouponsRouteImport } from './routes/organizer.coupons'
+import { Route as OrganizerAttendeesRouteImport } from './routes/organizer.attendees'
+import { Route as OrganizerAnalyticsRouteImport } from './routes/organizer.analytics'
 import { Route as EventsSlugRouteImport } from './routes/events.$slug'
+import { Route as DashboardTicketsRouteImport } from './routes/dashboard.tickets'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.notifications'
+import { Route as DashboardHistoryRouteImport } from './routes/dashboard.history'
+import { Route as DashboardFavoritesRouteImport } from './routes/dashboard.favorites'
+import { Route as AuthRegisterRouteImport } from './routes/auth.register'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 
 const TicketsRoute = TicketsRouteImport.update({
   id: '/tickets',
@@ -39,9 +64,24 @@ const OrganizerRoute = OrganizerRouteImport.update({
   path: '/organizer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesRoute = CategoriesRouteImport.update({
@@ -49,98 +89,360 @@ const CategoriesRoute = CategoriesRouteImport.update({
   path: '/categories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizerIndexRoute = OrganizerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const TicketsIdRoute = TicketsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => TicketsRoute,
 } as any)
+const OrganizersIdRoute = OrganizersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => OrganizersRoute,
+} as any)
+const OrganizerStaffRoute = OrganizerStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerSettingsRoute = OrganizerSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerPayoutsRoute = OrganizerPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerOrdersRoute = OrganizerOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerEventsRoute = OrganizerEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerCouponsRoute = OrganizerCouponsRouteImport.update({
+  id: '/coupons',
+  path: '/coupons',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerAttendeesRoute = OrganizerAttendeesRouteImport.update({
+  id: '/attendees',
+  path: '/attendees',
+  getParentRoute: () => OrganizerRoute,
+} as any)
+const OrganizerAnalyticsRoute = OrganizerAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => OrganizerRoute,
+} as any)
 const EventsSlugRoute = EventsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => EventsRoute,
 } as any)
+const DashboardTicketsRoute = DashboardTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardHistoryRoute = DashboardHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardFavoritesRoute = DashboardFavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthForgotRoute = AuthForgotRouteImport.update({
+  id: '/forgot',
+  path: '/forgot',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/blog': typeof BlogRoute
   '/categories': typeof CategoriesRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
-  '/organizer': typeof OrganizerRoute
-  '/organizers': typeof OrganizersRoute
+  '/faq': typeof FaqRoute
+  '/organizer': typeof OrganizerRouteWithChildren
+  '/organizers': typeof OrganizersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/dashboard/favorites': typeof DashboardFavoritesRoute
+  '/dashboard/history': typeof DashboardHistoryRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/organizer/analytics': typeof OrganizerAnalyticsRoute
+  '/organizer/attendees': typeof OrganizerAttendeesRoute
+  '/organizer/coupons': typeof OrganizerCouponsRoute
+  '/organizer/events': typeof OrganizerEventsRoute
+  '/organizer/orders': typeof OrganizerOrdersRoute
+  '/organizer/payouts': typeof OrganizerPayoutsRoute
+  '/organizer/settings': typeof OrganizerSettingsRoute
+  '/organizer/staff': typeof OrganizerStaffRoute
+  '/organizers/$id': typeof OrganizersIdRoute
   '/tickets/$id': typeof TicketsIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/organizer/': typeof OrganizerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/blog': typeof BlogRoute
   '/categories': typeof CategoriesRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRouteWithChildren
-  '/organizer': typeof OrganizerRoute
-  '/organizers': typeof OrganizersRoute
+  '/faq': typeof FaqRoute
+  '/organizers': typeof OrganizersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/dashboard/favorites': typeof DashboardFavoritesRoute
+  '/dashboard/history': typeof DashboardHistoryRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/organizer/analytics': typeof OrganizerAnalyticsRoute
+  '/organizer/attendees': typeof OrganizerAttendeesRoute
+  '/organizer/coupons': typeof OrganizerCouponsRoute
+  '/organizer/events': typeof OrganizerEventsRoute
+  '/organizer/orders': typeof OrganizerOrdersRoute
+  '/organizer/payouts': typeof OrganizerPayoutsRoute
+  '/organizer/settings': typeof OrganizerSettingsRoute
+  '/organizer/staff': typeof OrganizerStaffRoute
+  '/organizers/$id': typeof OrganizersIdRoute
   '/tickets/$id': typeof TicketsIdRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/organizer': typeof OrganizerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/blog': typeof BlogRoute
   '/categories': typeof CategoriesRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRouteWithChildren
-  '/organizer': typeof OrganizerRoute
-  '/organizers': typeof OrganizersRoute
+  '/faq': typeof FaqRoute
+  '/organizer': typeof OrganizerRouteWithChildren
+  '/organizers': typeof OrganizersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/tickets': typeof TicketsRouteWithChildren
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/dashboard/favorites': typeof DashboardFavoritesRoute
+  '/dashboard/history': typeof DashboardHistoryRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/tickets': typeof DashboardTicketsRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/organizer/analytics': typeof OrganizerAnalyticsRoute
+  '/organizer/attendees': typeof OrganizerAttendeesRoute
+  '/organizer/coupons': typeof OrganizerCouponsRoute
+  '/organizer/events': typeof OrganizerEventsRoute
+  '/organizer/orders': typeof OrganizerOrdersRoute
+  '/organizer/payouts': typeof OrganizerPayoutsRoute
+  '/organizer/settings': typeof OrganizerSettingsRoute
+  '/organizer/staff': typeof OrganizerStaffRoute
+  '/organizers/$id': typeof OrganizersIdRoute
   '/tickets/$id': typeof TicketsIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/organizer/': typeof OrganizerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/auth'
+    | '/blog'
     | '/categories'
+    | '/contact'
+    | '/dashboard'
     | '/events'
+    | '/faq'
     | '/organizer'
     | '/organizers'
     | '/pricing'
     | '/tickets'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/register'
+    | '/dashboard/favorites'
+    | '/dashboard/history'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/tickets'
     | '/events/$slug'
+    | '/organizer/analytics'
+    | '/organizer/attendees'
+    | '/organizer/coupons'
+    | '/organizer/events'
+    | '/organizer/orders'
+    | '/organizer/payouts'
+    | '/organizer/settings'
+    | '/organizer/staff'
+    | '/organizers/$id'
     | '/tickets/$id'
+    | '/dashboard/'
+    | '/organizer/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/auth'
+    | '/blog'
     | '/categories'
+    | '/contact'
     | '/events'
-    | '/organizer'
+    | '/faq'
     | '/organizers'
     | '/pricing'
     | '/tickets'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/register'
+    | '/dashboard/favorites'
+    | '/dashboard/history'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/tickets'
     | '/events/$slug'
+    | '/organizer/analytics'
+    | '/organizer/attendees'
+    | '/organizer/coupons'
+    | '/organizer/events'
+    | '/organizer/orders'
+    | '/organizer/payouts'
+    | '/organizer/settings'
+    | '/organizer/staff'
+    | '/organizers/$id'
     | '/tickets/$id'
+    | '/dashboard'
+    | '/organizer'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/auth'
+    | '/blog'
     | '/categories'
+    | '/contact'
+    | '/dashboard'
     | '/events'
+    | '/faq'
     | '/organizer'
     | '/organizers'
     | '/pricing'
     | '/tickets'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/register'
+    | '/dashboard/favorites'
+    | '/dashboard/history'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/tickets'
     | '/events/$slug'
+    | '/organizer/analytics'
+    | '/organizer/attendees'
+    | '/organizer/coupons'
+    | '/organizer/events'
+    | '/organizer/orders'
+    | '/organizer/payouts'
+    | '/organizer/settings'
+    | '/organizer/staff'
+    | '/organizers/$id'
     | '/tickets/$id'
+    | '/dashboard/'
+    | '/organizer/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  BlogRoute: typeof BlogRoute
   CategoriesRoute: typeof CategoriesRoute
+  ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   EventsRoute: typeof EventsRouteWithChildren
-  OrganizerRoute: typeof OrganizerRoute
-  OrganizersRoute: typeof OrganizersRoute
+  FaqRoute: typeof FaqRoute
+  OrganizerRoute: typeof OrganizerRouteWithChildren
+  OrganizersRoute: typeof OrganizersRouteWithChildren
   PricingRoute: typeof PricingRoute
   TicketsRoute: typeof TicketsRouteWithChildren
 }
@@ -175,11 +477,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
       fullPath: '/events'
       preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categories': {
@@ -189,12 +512,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/organizer/': {
+      id: '/organizer/'
+      path: '/'
+      fullPath: '/organizer/'
+      preLoaderRoute: typeof OrganizerIndexRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
     }
     '/tickets/$id': {
       id: '/tickets/$id'
@@ -203,6 +561,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TicketsIdRouteImport
       parentRoute: typeof TicketsRoute
     }
+    '/organizers/$id': {
+      id: '/organizers/$id'
+      path: '/$id'
+      fullPath: '/organizers/$id'
+      preLoaderRoute: typeof OrganizersIdRouteImport
+      parentRoute: typeof OrganizersRoute
+    }
+    '/organizer/staff': {
+      id: '/organizer/staff'
+      path: '/staff'
+      fullPath: '/organizer/staff'
+      preLoaderRoute: typeof OrganizerStaffRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/settings': {
+      id: '/organizer/settings'
+      path: '/settings'
+      fullPath: '/organizer/settings'
+      preLoaderRoute: typeof OrganizerSettingsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/payouts': {
+      id: '/organizer/payouts'
+      path: '/payouts'
+      fullPath: '/organizer/payouts'
+      preLoaderRoute: typeof OrganizerPayoutsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/orders': {
+      id: '/organizer/orders'
+      path: '/orders'
+      fullPath: '/organizer/orders'
+      preLoaderRoute: typeof OrganizerOrdersRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/events': {
+      id: '/organizer/events'
+      path: '/events'
+      fullPath: '/organizer/events'
+      preLoaderRoute: typeof OrganizerEventsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/coupons': {
+      id: '/organizer/coupons'
+      path: '/coupons'
+      fullPath: '/organizer/coupons'
+      preLoaderRoute: typeof OrganizerCouponsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/attendees': {
+      id: '/organizer/attendees'
+      path: '/attendees'
+      fullPath: '/organizer/attendees'
+      preLoaderRoute: typeof OrganizerAttendeesRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
+    '/organizer/analytics': {
+      id: '/organizer/analytics'
+      path: '/analytics'
+      fullPath: '/organizer/analytics'
+      preLoaderRoute: typeof OrganizerAnalyticsRouteImport
+      parentRoute: typeof OrganizerRoute
+    }
     '/events/$slug': {
       id: '/events/$slug'
       path: '/$slug'
@@ -210,8 +631,100 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsSlugRouteImport
       parentRoute: typeof EventsRoute
     }
+    '/dashboard/tickets': {
+      id: '/dashboard/tickets'
+      path: '/tickets'
+      fullPath: '/dashboard/tickets'
+      preLoaderRoute: typeof DashboardTicketsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/notifications': {
+      id: '/dashboard/notifications'
+      path: '/notifications'
+      fullPath: '/dashboard/notifications'
+      preLoaderRoute: typeof DashboardNotificationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/history': {
+      id: '/dashboard/history'
+      path: '/history'
+      fullPath: '/dashboard/history'
+      preLoaderRoute: typeof DashboardHistoryRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/favorites': {
+      id: '/dashboard/favorites'
+      path: '/favorites'
+      fullPath: '/dashboard/favorites'
+      preLoaderRoute: typeof DashboardFavoritesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/forgot': {
+      id: '/auth/forgot'
+      path: '/forgot'
+      fullPath: '/auth/forgot'
+      preLoaderRoute: typeof AuthForgotRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
+
+interface AuthRouteChildren {
+  AuthForgotRoute: typeof AuthForgotRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotRoute: AuthForgotRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardFavoritesRoute: typeof DashboardFavoritesRoute
+  DashboardHistoryRoute: typeof DashboardHistoryRoute
+  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardTicketsRoute: typeof DashboardTicketsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardFavoritesRoute: DashboardFavoritesRoute,
+  DashboardHistoryRoute: DashboardHistoryRoute,
+  DashboardNotificationsRoute: DashboardNotificationsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardTicketsRoute: DashboardTicketsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
 
 interface EventsRouteChildren {
   EventsSlugRoute: typeof EventsSlugRoute
@@ -223,6 +736,46 @@ const EventsRouteChildren: EventsRouteChildren = {
 
 const EventsRouteWithChildren =
   EventsRoute._addFileChildren(EventsRouteChildren)
+
+interface OrganizerRouteChildren {
+  OrganizerAnalyticsRoute: typeof OrganizerAnalyticsRoute
+  OrganizerAttendeesRoute: typeof OrganizerAttendeesRoute
+  OrganizerCouponsRoute: typeof OrganizerCouponsRoute
+  OrganizerEventsRoute: typeof OrganizerEventsRoute
+  OrganizerOrdersRoute: typeof OrganizerOrdersRoute
+  OrganizerPayoutsRoute: typeof OrganizerPayoutsRoute
+  OrganizerSettingsRoute: typeof OrganizerSettingsRoute
+  OrganizerStaffRoute: typeof OrganizerStaffRoute
+  OrganizerIndexRoute: typeof OrganizerIndexRoute
+}
+
+const OrganizerRouteChildren: OrganizerRouteChildren = {
+  OrganizerAnalyticsRoute: OrganizerAnalyticsRoute,
+  OrganizerAttendeesRoute: OrganizerAttendeesRoute,
+  OrganizerCouponsRoute: OrganizerCouponsRoute,
+  OrganizerEventsRoute: OrganizerEventsRoute,
+  OrganizerOrdersRoute: OrganizerOrdersRoute,
+  OrganizerPayoutsRoute: OrganizerPayoutsRoute,
+  OrganizerSettingsRoute: OrganizerSettingsRoute,
+  OrganizerStaffRoute: OrganizerStaffRoute,
+  OrganizerIndexRoute: OrganizerIndexRoute,
+}
+
+const OrganizerRouteWithChildren = OrganizerRoute._addFileChildren(
+  OrganizerRouteChildren,
+)
+
+interface OrganizersRouteChildren {
+  OrganizersIdRoute: typeof OrganizersIdRoute
+}
+
+const OrganizersRouteChildren: OrganizersRouteChildren = {
+  OrganizersIdRoute: OrganizersIdRoute,
+}
+
+const OrganizersRouteWithChildren = OrganizersRoute._addFileChildren(
+  OrganizersRouteChildren,
+)
 
 interface TicketsRouteChildren {
   TicketsIdRoute: typeof TicketsIdRoute
@@ -237,23 +790,19 @@ const TicketsRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRouteWithChildren,
+  BlogRoute: BlogRoute,
   CategoriesRoute: CategoriesRoute,
+  ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   EventsRoute: EventsRouteWithChildren,
-  OrganizerRoute: OrganizerRoute,
-  OrganizersRoute: OrganizersRoute,
+  FaqRoute: FaqRoute,
+  OrganizerRoute: OrganizerRouteWithChildren,
+  OrganizersRoute: OrganizersRouteWithChildren,
   PricingRoute: PricingRoute,
   TicketsRoute: TicketsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
